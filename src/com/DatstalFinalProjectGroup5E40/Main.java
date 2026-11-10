@@ -63,7 +63,7 @@ public class Main {
                     String start = input.nextLine().trim();
                     IO.print("Enter destination place: ");
                     String dest = input.nextLine().trim();
-                    com.DatstalFinalProjectGroup5E40.algorithms.BFS.findPath(graph, start, dest);
+                    BFS.findPath(graph, start, dest);
                     break;
 
                 case "4":
