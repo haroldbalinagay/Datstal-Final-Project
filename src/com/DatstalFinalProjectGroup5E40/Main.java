@@ -45,6 +45,11 @@ public class Main {
                         System.out.println("Load the map file first (option 1).");
                         break;
                     }
+                    IO.print("Enter starting place: ");
+                    String start = input.nextLine().trim();
+                    IO.print("Enter destination place: ");
+                    String dest = input.nextLine().trim();
+                    com.DatstalFinalProjectGroup5E40.algorithms.BFS.findPath(graph, start, dest);
                     break;
 
                 case "4":
