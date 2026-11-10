@@ -137,13 +137,38 @@ public class Graph {
             System.out.println();
         }
     }
+    public void printMatrix() {
+        if (placeCount == 0) {
+            System.out.println("The map is empty. Load a map file first.");
+            return;
+        }
+
+        for (int i = 0; i < placeCount; i++) {
+            System.out.println(i + " = " + places[i]);
+        }
+        System.out.println();
+
+        // Header row of column numbers
+        System.out.print("    ");
+        for (int j = 0; j < placeCount; j++) {
+            System.out.printf("%3d", j);
+        }
+        System.out.println();
+
+        for (int i = 0; i < placeCount; i++) {
+            System.out.printf("%3d ", i);
+            for (int j = 0; j < placeCount; j++) {
+                System.out.printf("%3d", adj[i][j] ? 1 : 0);
+            }
+            System.out.println();
+        }
+    }
     public static void main(String[] args) {
         Graph g = new Graph();
-        if (g.loadFromFile("src\\com\\DatstalFinalProjectGroup5E40\\resources\\map.txt")) {
-            System.out.println("Loaded " + g.getPlaceCount() + " places.");
-            g.printGraph();
-        } else {
-            System.out.println("Error: file not found.");
-        }
+        g.loadFromFile("src/com/DatstalFinalProjectGroup5E40/resources/map.txt");
+        System.out.println("Loaded " + g.getPlaceCount() + " places.\n");
+        g.printGraph();
+        System.out.println();
+        g.printMatrix();
     }
 }
