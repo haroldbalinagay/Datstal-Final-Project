@@ -2,11 +2,11 @@ St._La_Salle_Hall Br._Connon_Hall
 St._La_Salle_Hall Botanical_Garden
 St._La_Salle_Hall Velasco_Hall
 Br._Connon_Hall Botanical_Garden
-Br._Connon_Hall Yuchengo_Hall
-Botanical_Garden Yuchengo_Hall
+Br._Connon_Hall Yuchengco_Hall
+Botanical_Garden Yuchengco_Hall
 Botanical_Garden Henry_Sy_Building
-Yuchengo_Hall Henry_Sy_Building
-Yuchengo_Hall St_Joseph_Building
+Yuchengco_Hall Henry_Sy_Building
+Yuchengco_Hall St_Joseph_Building
 Henry_Sy_Building St_Joseph_Building
 Henry_Sy_Building Velasco_Hall
 Henry_Sy_Building Br._Bloemen_Hall
