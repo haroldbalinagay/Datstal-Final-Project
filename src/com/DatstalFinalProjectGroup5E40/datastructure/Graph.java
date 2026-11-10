@@ -163,12 +163,4 @@ public class Graph {
             System.out.println();
         }
     }
-    public static void main(String[] args) {
-        Graph g = new Graph();
-        g.loadFromFile("src/com/DatstalFinalProjectGroup5E40/resources/map.txt");
-        System.out.println("Loaded " + g.getPlaceCount() + " places.\n");
-        g.printGraph();
-        System.out.println();
-        g.printMatrix();
-    }
 }
