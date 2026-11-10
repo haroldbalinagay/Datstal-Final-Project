@@ -50,41 +50,4 @@ public class Queue {
     public int size() {
         return size;
     }
-
-    public static void main(String[] args) {
-        Queue q = new Queue(3);
-        //initilizes queue
-        IO.println("Initializing queue with capacity 3.");
-        IO.println("Is queue empty? (expected: true): " + q.isEmpty());
-        IO.println("Is queue full? (expected: false): " + q.isFull());
-        IO.println("Initial size (expected: 0): " + q.size());
-        //test enqueue
-        q.enqueue(10);
-        q.enqueue(20);
-        q.enqueue(30);
-        IO.println("Enqueued 10, 20, 30");
-        IO.println("Is queue full? (expected: true): " + q.isFull());
-        IO.println("Current size (expected: 3): " + q.size());
-        IO.println("Peek front element (expected: 10): " + q.peek());
-        //test overflow
-        IO.println("Attempting to enqueue 40 into a full queue");
-        q.enqueue(40); //trigger overlow msg
-        //test dequeue
-        IO.println("Dequeued (expected: 10): " + q.dequeue());
-        IO.println("Dequeued (expected: 20): " + q.dequeue());
-        IO.println("Current size after 2 dequeues (expected: 1): " + q.size());
-        IO.println("New peek front (expected: 30): " + q.peek());
-        IO.println("Enqueuing 40 and 50 to test circular wrap-around");
-        q.enqueue(40);
-        q.enqueue(50);
-        IO.println("Is queue full now? (expected: true): " + q.isFull());
-        IO.println("Peek front (expected: 30): " + q.peek());
-        IO.println("Dequeued (expected: 30): " + q.dequeue());
-        IO.println("Dequeued (expected: 40): " + q.dequeue());
-        IO.println("Dequeued (expected: 50): " + q.dequeue());
-        IO.println("Is queue empty? (expected: true): " + q.isEmpty());
-        IO.println("Final size (expected: 0): " + q.size());
-        IO.println("Attempting dequeue on an already empty queue:");
-        q.dequeue(); // trigger underflow msg
-    }
 }
