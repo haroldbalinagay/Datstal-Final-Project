@@ -137,4 +137,13 @@ public class Graph {
             System.out.println();
         }
     }
+    public static void main(String[] args) {
+        Graph g = new Graph();
+        if (g.loadFromFile("src\\com\\DatstalFinalProjectGroup5E40\\resources\\map.txt")) {
+            System.out.println("Loaded " + g.getPlaceCount() + " places.");
+            g.printGraph();
+        } else {
+            System.out.println("Error: file not found.");
+        }
+    }
 }
