@@ -1,4 +1,4 @@
-St._La_Salle_Hall Br.Connon_Hall
+St._La_Salle_Hall Br._Connon_Hall
 St._La_Salle_Hall Botanical_Garden
 St._La_Salle_Hall Velasco_Hall
 Br._Connon_Hall Botanical_Garden
