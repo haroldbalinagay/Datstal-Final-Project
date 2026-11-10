@@ -1,4 +1,4 @@
-package com.DatstalFinalProjectGroup5E40.DataStructure;
+package com.DatstalFinalProjectGroup5E40.datastructure;
 
 public class Queue {
     private int[] queueArray;
