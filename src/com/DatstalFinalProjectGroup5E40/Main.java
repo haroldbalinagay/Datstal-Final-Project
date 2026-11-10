@@ -1,6 +1,7 @@
 package com.DatstalFinalProjectGroup5E40;
 
 import com.DatstalFinalProjectGroup5E40.datastructure.Graph;
+import com.DatstalFinalProjectGroup5E40.algorithms.*;
 import java.util.Scanner;
 
 public class Main {
@@ -37,6 +38,19 @@ public class Main {
                     if (!loaded) {
                         System.out.println("Load the map file first (option 1).");
                         break;
+                    }
+                    int n = graph.getPlaceCount();
+                    // Copy the names so the graph's original array stays in its original order
+                    String[] sorted = new String[n];
+                    for (int i = 0; i < n; i++) {
+                        sorted[i] = graph.getPlaceName(i);
+                    }
+
+                    InsertionSort.sort(sorted);   // sort the copy A-to-Z
+
+                    System.out.println("Places (A-to-Z):");
+                    for (int i = 0; i < n; i++) {
+                        System.out.println((i + 1) + ". " + sorted[i]);
                     }
                     break;
 
