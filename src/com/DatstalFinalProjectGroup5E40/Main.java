@@ -5,13 +5,11 @@ import com.DatstalFinalProjectGroup5E40.algorithms.*;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Graph graph = new Graph();
         boolean loaded = false;
         boolean run = true;
-
         while (run) {
             System.out.println();
             System.out.println("CAMPUS MAP FINDER");
@@ -20,22 +18,30 @@ public class Main {
             System.out.println("3. Find a path between 2 places");
             System.out.println("4. Quit");
             System.out.print("Choose (1-4): ");
-
+            if (!input.hasNextLine()) {
+                IO.println("\nInput stream ended. Exiting program.");
+                break;
+            }
             String choice = input.nextLine().trim();
-
             switch (choice) {
                 case "1":
                     if (graph.loadFromFile("src/com/DatstalFinalProjectGroup5E40/resources/map.txt")) {
-                        loaded = true;
-                        System.out.println("\nLoaded " + graph.getPlaceCount() + " places.");
-                        graph.printGraph();
+                        if (graph.getPlaceCount() == 0) {
+                            loaded = false;
+                            System.out.println("Error: Map file is empty or contains no valid roads.");
+                        } else {
+                            loaded = true;
+                            System.out.println("\nLoaded " + graph.getPlaceCount() + " places.");
+                            graph.printGraph();
+                        }
                     } else {
+                        loaded = false;
+                        graph.clear();
                         System.out.println("Error: file not found");
                     }
                     break;
-
                 case "2":
-                    if (!loaded) {
+                    if (!loaded || graph.getPlaceCount() == 0) {
                         System.out.println("Load the map file first (option 1).");
                         break;
                     }
@@ -53,24 +59,26 @@ public class Main {
                         System.out.println((i + 1) + ". " + sorted[i]);
                     }
                     break;
-
                 case "3":
-                    if (!loaded) {
+                    if (!loaded || graph.getPlaceCount() == 0) {
                         System.out.println("Load the map file first (option 1).");
                         break;
                     }
                     IO.print("Enter starting place: ");
-                    String start = input.nextLine().trim();
+                    String start = input.hasNextLine() ? input.nextLine().trim() : "";
                     IO.print("Enter destination place: ");
-                    String dest = input.nextLine().trim();
+                    String dest = input.hasNextLine() ? input.nextLine().trim() : "";
+                    if (start.isEmpty() || dest.isEmpty()) {
+                        System.out.println("Error: Place name is wrong. Please enter both a starting and destination place.");
+                        break;
+                    }
+
                     BFS.findPath(graph, start, dest);
                     break;
-
                 case "4":
                     System.out.println("Exiting program");
                     run = false;
                     break;
-
                 default:
                     System.out.println("Invalid choice. Enter a number from 1 to 4.");
             }
