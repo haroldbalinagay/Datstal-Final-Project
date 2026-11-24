@@ -1,18 +1,28 @@
 package com.DatstalFinalProjectGroup5E40.algorithms;
+
 import com.DatstalFinalProjectGroup5E40.datastructure.Graph;
 import com.DatstalFinalProjectGroup5E40.datastructure.Queue;
 
 public class BFS {
     public static void findPath(Graph graph, String startName, String endName) {
+        if (graph == null) {
+            IO.println("Error: Map graph is not initialized.");
+            return;
+        }
         int n = graph.getPlaceCount();
-
         if (n == 0) {
             IO.println("The map is empty. Load a map file first.");
             return;
         }
+        if (startName == null || startName.trim().isEmpty() || endName == null || endName.trim().isEmpty()) {
+            IO.println("Error: Place name is wrong. Starting and destination places cannot be empty.");
+            return;
+        }
+        String cleanStart = startName.trim();
+        String cleanEnd = endName.trim();
         //find indices using graph's built-in findPlace method
-        int startIndex = graph.findPlace(startName);
-        int endIndex = graph.findPlace(endName);
+        int startIndex = graph.findPlace(cleanStart);
+        int endIndex = graph.findPlace(cleanEnd);
         //check if place names are valid
         if (startIndex == -1 || endIndex == -1) {
             IO.println("Error: Place name is wrong. Please check your spelling.");
@@ -52,7 +62,7 @@ public class BFS {
         }
         //check if path exists
         if (!pathFound) {
-            IO.println("Error: There is no path between " + startName + " and " + endName + ".");
+            IO.println("Error: There is no path between " + cleanStart + " and " + cleanEnd + ".");
             return;
         }
         //reconstruct path from destination back to start using parent array
