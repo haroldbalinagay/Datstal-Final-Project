@@ -37,8 +37,12 @@ public class Graph {
     }
 
     public int findPlace(String name) {
+        if (name == null) {
+            return -1;
+        }
+        String target = name.trim();
         for (int i = 0; i < placeCount; i++) {
-            if (places[i].equalsIgnoreCase(name)) {
+            if (places[i] != null && places[i].equalsIgnoreCase(target)) {
                 return i;
             }
         }
@@ -47,14 +51,21 @@ public class Graph {
 
     //methods for building graph
     public int addPlace(String name) {
-        int existing = findPlace(name);
+        if (name == null) {
+            return -1;
+        }
+        String cleaned = name.trim();
+        if (cleaned.isEmpty()) {
+            return -1;
+        }
+        int existing = findPlace(cleaned);
         if (existing != -1) {
             return existing;
         }
         if (placeCount >= MAX_PLACES) {
             return -1;
         }
-        places[placeCount] = name;
+        places[placeCount] = cleaned;
         placeCount++;
         return placeCount - 1;
     }
@@ -85,19 +96,20 @@ public class Graph {
 
     // Loading the map file
     public boolean loadFromFile(String filename) {
+        if (filename == null || filename.trim().isEmpty()) {
+            return false;
+        }
+
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(filename));
-        } catch (IOException e) {
-            return false; // file not found
-        }
-        clear();
-        try {String line;
+            clear();
+            String line;
             int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
                 lineNumber++;
                 line = line.trim();
-                if (line.length() == 0) {
+                if (line.isEmpty()) {
                     continue; // skip blank lines
                 }
                 String[] parts = line.split("\\s+"); // ignore white spaces
@@ -110,11 +122,18 @@ public class Graph {
                     break;
                 }
             }
-            reader.close();
+            return true;
         } catch (IOException e) {
             return false;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    IO.println("Warning: Could not close file cleanly.");
+                }
+            }
         }
-        return true;
     }
 
     public void printGraph() {
